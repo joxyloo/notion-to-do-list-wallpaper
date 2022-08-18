@@ -1,3 +1,7 @@
+# Bash output
+output.txt
+errors.txt
+
 # Logs
 logs
 *.log
