@@ -1,7 +1,7 @@
 const { Client } = require('@notionhq/client');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
-exports.getTodoItems = async function() {
+exports.getTodoTasks = async function() {
   
   const data = {
     "Personal": [],
@@ -34,9 +34,9 @@ exports.getTodoItems = async function() {
   for(var i = 0; i < results.length; i++) {
     const result = results[i];
     const category = result.properties["Tags"].select?.name || "Others";
-    const item = result.properties["Name"].title[0].plain_text;
+    const task = result.properties["Name"].title[0].plain_text;
 
-    data[category].push(item);
+    data[category].push(task);
   }
 
   console.log(data);

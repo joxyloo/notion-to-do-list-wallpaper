@@ -2,7 +2,7 @@ const { Bannerbear } = require('bannerbear');
 const bb = new Bannerbear(process.env.BB_API_KEY);
 const TEMPLATE_ID = 'k4qoBVDy1gLEDzN0gj';
 
-exports.generateWallpaper = async function(todoItems) {
+exports.generateWallpaper = async function(todoTasks) {
 
   var modifications =  [
     {
@@ -19,14 +19,14 @@ exports.generateWallpaper = async function(todoItems) {
     }
   ];
 
-  for (category in todoItems) {
+  for (category in todoTasks) {
     
     var bb_object = {
       "name": "",
       "text": "",
     };
     
-    const todo = todoItems[category];
+    const todo = todoTasks[category];
     var todoText = '';
 
     for(i in todo) {

@@ -3,7 +3,7 @@ const fs = require('fs');
 
 (async () => {
 
-  var result = await fetch('https://your-domain.com/notion-todo-items').then((res) => res.json());
+  var result = await fetch('https://your-domain.com/notion-todo-wallpaper').then((res) => res.json());
 
   if (result.hasChange && result.imageUrl) {
     const res = await fetch(result.imageUrl);
