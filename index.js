@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const notion = require('./notion.js');
 const bannerbear = require('./bannerbear.js');
+const calendar = require('./calendar.js');
+
 var app = express();
 var todoTasks;
 
@@ -19,15 +21,17 @@ app.get('/notion-todo-wallpaper', async (req, res) => {
 
   var hasChange = false;
   var imageUrl = '';
-  
-  // Step 1. Get the To-do List from the Notion Database
+
+  // Step 1. Get the To-do List from the Notion Database and get calendar
   var result = await notion.getTodoTasks();
-  
+
   var hasChange = JSON.stringify(todoTasks) !== JSON.stringify(result);
+
+  const calendarObj = await calendar.getCurrentMonthCalendar();
 
   // Step 2. Generate a Wallpaper Using Bannerbear
   if (hasChange) {
-    imageUrl = await bannerbear.generateWallpaper(result);
+    imageUrl = await bannerbear.generateWallpaper(result, calendarObj);
   }
 
   todoTasks = result;
