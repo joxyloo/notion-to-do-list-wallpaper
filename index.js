@@ -22,7 +22,7 @@ app.get('/notion-todo-wallpaper', async (req, res) => {
   var hasChange = false;
   var imageUrl = '';
 
-  // Step 1. Get the To-do List from the Notion Database and get calendar
+  // Step 1. Get the To-do List from the Notion Database
   var result = await notion.getTodoTasks();
 
   var hasChange = JSON.stringify(todoTasks) !== JSON.stringify(result);
